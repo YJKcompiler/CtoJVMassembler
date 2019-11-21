@@ -1,10 +1,9 @@
-package listener.main;
+package jeon_3_2.compiler.hw_05.listener;
+import jeon_3_2.compiler.hw_05.generated.*;
 import org.antlr.v4.runtime.*;
 import org.antlr.v4.runtime.tree.ParseTree;
 import org.antlr.v4.runtime.tree.ParseTreeWalker;
 
-
-import generated.*;
 
 public class Translator {
 	enum OPTIONS {
@@ -31,13 +30,14 @@ public class Translator {
 	
 	public static void main(String[] args) throws Exception
 	{
-		CharStream codeCharStream = CharStreams.fromFileName("test.c");
+		CharStream codeCharStream = CharStreams.fromFileName("D:\\CNU-CSE-code\\java_intelliJ\\src\\jeon_3_2\\compiler\\hw_03\\test2.c");
 		MiniCLexer lexer = new MiniCLexer(codeCharStream);
 		CommonTokenStream tokens = new CommonTokenStream( lexer );
 		MiniCParser parser = new MiniCParser( tokens );
 		ParseTree tree = parser.program();
 		
 		ParseTreeWalker walker = new ParseTreeWalker();
+//		walker.walk(new MiniCPrintListener(), tree);
 		switch (getOption(args)) {
 			case PRETTYPRINT : 		
 				walker.walk(new MiniCPrintListener(), tree );
